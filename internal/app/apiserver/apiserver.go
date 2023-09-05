@@ -1,7 +1,6 @@
 package apiserver
 
 import (
-	"io"
 	"net/http"
 
 	"github.com/gorilla/mux"
@@ -53,10 +52,5 @@ func (s *APIServer) configureLogger() error {
 
 func (s *APIServer) configureRouter() {
 	s.router.HandleFunc("/hello", s.handleHello())
-}
-
-func (s *APIServer) handleHello() http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		io.WriteString(w, "Hello")
-	}
+	s.router.HandleFunc("/info", s.handleInfo())
 }
